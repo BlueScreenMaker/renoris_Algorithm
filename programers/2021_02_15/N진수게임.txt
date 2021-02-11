@@ -1,0 +1,11 @@
+먼저 미리 구할 숫자의 갯수 t
+진법 n
+게임에 참가하는 인원 m
+튜브의 순서 p
+
+먼저 미리 말할 숫자의 갯수를 countResult로 잡고 count가 완료될때까지 반복문
+
+0부터 시작해서 계속해서 number를 올리고 
+number 하나하나를 n진수로 바꾸고 StringBuilder에 저장한뒤 자신의 차례면 자신의 배열에 저장한뒤 count를 하나 올림
+그리고 자신의 차례든 아니든 가장 앞자리를 지움=>지워나가다보면 String Builder가 텅빌텐대 substring을 통해서 찾기 때문에 텅비면 예외가 뜸
+예외상황때 number를 하나 올린다음 다시 stringbuilder를 배치하고 작업 반복
