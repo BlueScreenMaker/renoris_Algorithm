@@ -1,4 +1,4 @@
-package programers;
+package programers._2021_02_15;
 class N진수게임 {
     private StringBuilder sb = new StringBuilder();
     private StringBuilder answer = new StringBuilder();

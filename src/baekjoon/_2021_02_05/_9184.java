@@ -1,4 +1,4 @@
-package baekjoon;
+package baekjoon._2021_02_05;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
