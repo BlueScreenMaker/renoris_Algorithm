@@ -77,4 +77,64 @@ public class 방금그곡 {
         }
         return answer;
     }
+
+    public String solution2(String m, String[] musicinfos) {
+        String answer = "(None)";
+        ArrayList<String> findmusiclist = new ArrayList<>();
+        for (int i = 0; i < musicinfos.length; i++) {
+            String[] info = musicinfos[i].split(",");
+            String[] startTime = info[0].split(":");
+            String[] endTime = info[1].split(":");
+            String musicName = info[2];
+            String melody = info[3];
+
+
+            //musicinfos, m의 멜로디를 전부 바꿈
+            int timeDistance = Integer.parseInt(endTime[0]) - Integer.parseInt(startTime[0]);
+            int minuteDistance = Integer.parseInt(endTime[1]) - Integer.parseInt(startTime[1]) + (timeDistance * 60);
+            StringBuilder sb = new StringBuilder();
+            melody = melody.replace("C#", "c");
+            m = m.replace("C#", "c");
+            melody = melody.replace("D#", "d");
+            m = m.replace("D#", "d");
+            melody = melody.replace("A#", "a");
+            m = m.replace("A#", "a");
+            melody = melody.replace("G#", "g");
+            m = m.replace("G#", "g");
+            melody = melody.replace("F#", "f");
+            m = m.replace("F#", "f");
+
+            //musicinfos 내부의 멜로디를 곡 재생시간만큼 지속
+            int count = 0;
+            for (int j = 0; j < minuteDistance; j++) {
+                String item = melody.substring(count, count + 1);
+                sb.append(item);
+                count++;
+                if (count == melody.length()) {
+                    count = 0;
+                }
+            }
+
+            //이곡이 맞다면 삽입
+            String line = sb.toString();
+            System.out.println(line);
+            System.out.println(m);
+            if (line.contains(m)) {
+                findmusiclist.add(musicName + "," + minuteDistance);
+            }
+        }
+
+        //모은것들중 가장 시간이 긴것을 빼내는 작업
+        if (findmusiclist.size() != 0) {
+            int max = 0;
+            for (int i = 0; i < findmusiclist.size(); i++) {
+                String[] info = findmusiclist.get(i).split(",");
+                if (max < Integer.parseInt(info[1])) {
+                    max = Integer.parseInt(info[1]);
+                    answer = info[0];
+                }
+            }
+        }
+        return answer;
+    }
 }
