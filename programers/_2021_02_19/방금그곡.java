@@ -31,33 +31,31 @@ public class 방금그곡 {
                     }
                 }
                 count++;
-                if(count>melodychar.length-1){
-                    count-=melodychar.length;
+                if(count==melodychar.length){
+                    count=0;
                 }
             }
-
             //m과 지속한것을 대조
             boolean find=false;
-            for (int j = 0; j < sb.length(); j++) { //
+            for (int j = 0; j < sb.length(); j++) { //곡길이만큼의 멜로디 배열
                 if(find) break;
-                for (int k = 0; k < m.length(); k++) {
+                for (int k = 0; k < m.length(); k++) { //네오가 기억하는 멜로디
                     try{
-                        if(!m.substring(k,k+1).equals(sb.substring(j,j+1))){
+                        if(!m.substring(k,k+1).equals(sb.substring(j+k,j+1+k))){ //네오가 기억하는 멜로디의 첫음이 현재 곡길이의 첫음이 아니면 현재 곡길이+1
                             break;
                         }
                     }catch (Exception e){
                         break;
                     }
-                    if(k==m.length()-1){
-                        try{
-                            if(!sb.substring(j+1,j+2).equals("#")){
+                    if(k==m.length()-1){ //네오가 기억하는 멜로디의 와 현재 곡길이 만큼의 결과가 다맞았다고 했을때 그 곡길이 뒤에 #이 있냐없냐..
+                        try{//여기서 에러뜨면 현재 곡길이 또한 마지막이므로 뒤에 #이 없다고 볼수있다
+                            if(!sb.substring(j+k+1,j+k+2).equals("#")){
                                 find=true;
                             }
                         }catch (Exception e){
                             find=true;
                         }
                     }
-                    j++;
                 }
             }
             if (find){
