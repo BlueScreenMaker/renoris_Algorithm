@@ -82,7 +82,7 @@ public class 방금그곡 {
         String answer = "(None)";
         ArrayList<String> findmusiclist = new ArrayList<>();
         for (int i = 0; i < musicinfos.length; i++) {
-            String[] info = musicinfos[i].split(",");
+            String[] info = musicinfos[i].split(","); 
             String[] startTime = info[0].split(":");
             String[] endTime = info[1].split(":");
             String musicName = info[2];
@@ -104,7 +104,7 @@ public class 방금그곡 {
             melody = melody.replace("F#", "f");
             m = m.replace("F#", "f");
 
-            //musicinfos 내부의 멜로디를 곡 재생시간만큼 지속
+            //melody를 곡 재생시간만큼 삽입
             int count = 0;
             for (int j = 0; j < minuteDistance; j++) {
                 String item = melody.substring(count, count + 1);
@@ -115,16 +115,14 @@ public class 방금그곡 {
                 }
             }
 
-            //이곡이 맞다면 삽입
+            //이곡이 맞다면 맞는 음악 리스트에 삽입
             String line = sb.toString();
-            System.out.println(line);
-            System.out.println(m);
             if (line.contains(m)) {
                 findmusiclist.add(musicName + "," + minuteDistance);
             }
         }
 
-        //모은것들중 가장 시간이 긴것을 빼내는 작업
+        //맞는 음악리스트에서 가장 시간이 긴것+ 시간이 긴것중 가장 빠른것 을 빼내는작업
         if (findmusiclist.size() != 0) {
             int max = 0;
             for (int i = 0; i < findmusiclist.size(); i++) {
