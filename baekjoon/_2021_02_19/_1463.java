@@ -51,7 +51,6 @@ public class _1463 {
         }
         if(num % 3 == 0&&num % 2 == 0){
             dp2[num] = 1 + Math.min(recursion(num / 3), recursion(num /2));
-//            dp[num] = 1 + Math.min(Math.min(recursion(num / 3), recursion(num /2)),recursion(num-1));
         }
         else if (num % 3 == 0) {
             dp2[num] = 1 + Math.min(recursion(num / 3), recursion(num - 1));
@@ -63,7 +62,4 @@ public class _1463 {
         return dp2[num];
     }
 
-    public static int m3(int first, int second, int third) {
-        return Math.min(Math.min(first, second), third);
-    }
 }

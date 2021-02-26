@@ -24,7 +24,7 @@ public class _2156 {
             }else{
                 dp[i][0] = wine[i] + Math.max(dp[i - 2][0], dp[i - 2][1]);
             }
-            dp[i][1] = wine[i] + Math.max(Math.max(dp[i - 1][0], dp[i - 2][0]), dp[i - 2][1]);
+            dp[i][1] = wine[i] + dp[i - 1][0];
         }
         int result = Math.max(Math.max(dp[wineValue][0], dp[wineValue][1]), dp[wineValue-1][1]);
         System.out.println(result);

@@ -81,6 +81,12 @@ public class 방금그곡 {
     public String solution2(String m, String[] musicinfos) {
         String answer = "(None)";
         ArrayList<String> findmusiclist = new ArrayList<>();
+        m = m.replace("C#", "c");
+        m = m.replace("D#", "d");
+        m = m.replace("A#", "a");
+        m = m.replace("A#", "a");
+        m = m.replace("F#", "f");
+
         for (int i = 0; i < musicinfos.length; i++) {
             String[] info = musicinfos[i].split(","); 
             String[] startTime = info[0].split(":");
@@ -88,21 +94,15 @@ public class 방금그곡 {
             String musicName = info[2];
             String melody = info[3];
 
-
             //musicinfos, m의 멜로디를 전부 바꿈
             int timeDistance = Integer.parseInt(endTime[0]) - Integer.parseInt(startTime[0]);
             int minuteDistance = Integer.parseInt(endTime[1]) - Integer.parseInt(startTime[1]) + (timeDistance * 60);
             StringBuilder sb = new StringBuilder();
             melody = melody.replace("C#", "c");
-            m = m.replace("C#", "c");
             melody = melody.replace("D#", "d");
-            m = m.replace("D#", "d");
             melody = melody.replace("A#", "a");
-            m = m.replace("A#", "a");
             melody = melody.replace("G#", "g");
-            m = m.replace("G#", "g");
             melody = melody.replace("F#", "f");
-            m = m.replace("F#", "f");
 
             //melody를 곡 재생시간만큼 삽입
             int count = 0;
