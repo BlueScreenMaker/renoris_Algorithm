@@ -37,9 +37,6 @@ public class _11053 {
 
     public static int recursion(int num, int max, int limit) {
         if (num < limit) {
-            if (dp[num] != 0) {
-                return dp[num];
-            }
             for (int i = num + 1; i < limit; i++) {
                 if (numbers[i] > max) {
                     dp[num] = Math.max(1 + recursion(i, numbers[i], limit), dp[num]);
