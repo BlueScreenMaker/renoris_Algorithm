@@ -63,7 +63,5 @@ public class 삼각달팽이 {
             width++;
         }
         return result;
-
-
     }
 }
