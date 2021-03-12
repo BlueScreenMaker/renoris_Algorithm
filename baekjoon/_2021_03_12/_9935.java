@@ -17,10 +17,11 @@ public class _9935 {
 
         Stack<Character> fire = new Stack<>();
         Stack<Character> fireStorage = new Stack<>();
-
+        //삽입
         for (int i = 0; i < fireChar.length; i++) {
             fire.push(fireChar[i]);
         }
+
 
         for (int i = 0; i < baseChar.length; i++) {
             line.push(baseChar[i]);
@@ -44,9 +45,7 @@ public class _9935 {
             }
 
             if (correct) {
-                while (!lineStorage.isEmpty()) {
-                    lineStorage.pop();
-                }
+                lineStorage=new Stack<>();
             } else {
                 while (!lineStorage.isEmpty()) {
                     line.push(lineStorage.pop());
