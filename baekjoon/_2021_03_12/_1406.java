@@ -9,8 +9,8 @@ public class _1406 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         char[] inputbase = br.readLine().toCharArray();
-        Stack<Character> in = new Stack<>();
-        Stack<Character> out = new Stack<>();
+        Stack<Character> in = new Stack<>();//커서왼쪽
+        Stack<Character> out = new Stack<>();//커서 오른쪽
 
         for (int i = 0; i < inputbase.length; i++) {
             in.push(inputbase[i]);
@@ -31,11 +31,11 @@ public class _1406 {
                     break;
                 case 66://B
                     if (in.size() != 0) {
-                        in.pop();
+                        in.pop(); //고냥 버리기
                     }
                     break;
                 case 80://P
-                    br.read();
+                    br.read();//P인이상 어차피 중간은 비어있을테니 버리기
                     in.push((char) br.read());
             }
             br.read(); //개행문자 제거
