@@ -5,12 +5,12 @@ import java.util.PriorityQueue;
 public class 더_맵게 {
     public int solution(int[] scoville, int K) {
         int answer = 0;
+
         PriorityQueue<Integer> queue = new PriorityQueue<>();
         for (int i = 0; i < scoville.length; i++) {
             queue.offer(scoville[i]);
         }
         int first = 0;
-
         while (true) {
             first = queue.poll();
             if (first >= K) {            //첫번째가 K이상이면 모든 값이 K보다 높은값
@@ -23,8 +23,7 @@ public class 더_맵게 {
                 answer=-1;
                 break;
             }
-            int result = first + second * 2;
-            queue.offer(result);
+            queue.offer(first + second * 2);
             answer++;
         }
         return answer;

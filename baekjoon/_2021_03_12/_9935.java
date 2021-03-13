@@ -22,7 +22,6 @@ public class _9935 {
             fire.push(fireChar[i]);
         }
 
-
         for (int i = 0; i < baseChar.length; i++) {
             line.push(baseChar[i]);
             boolean correct = true;
@@ -55,6 +54,8 @@ public class _9935 {
                 fire.push(fireStorage.pop());
             }
         }
+
+        //결과부
 
         StringBuilder sb = new StringBuilder();
         Stack<Character> result = new Stack<>();

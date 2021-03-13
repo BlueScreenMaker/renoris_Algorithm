@@ -19,17 +19,17 @@ public class _1406 {
         int commandNumber = Integer.parseInt(br.readLine());
         for (int i = 1; i <= commandNumber; i++) {
             switch (br.read()) {
-                case 76://L
+                case 76://L //왼쪽
                     if (in.size() != 0) {
                         out.push(in.pop());
                     }
                     break;
-                case 68://D
+                case 68://D //오른쪽
                     if (out.size() != 0) {
                         in.push(out.pop());
                     }
                     break;
-                case 66://B
+                case 66://B //삭제
                     if (in.size() != 0) {
                         in.pop(); //고냥 버리기
                     }
@@ -42,6 +42,15 @@ public class _1406 {
         }
 
         StringBuilder sb = new StringBuilder();
+//        int insize = in.size();
+//        int outsize = out.size();
+//        for (int i = 0; i < insize; i++) {
+//            sb.insert(0, in.pop()); //n의 복잡도를 가진다
+//        }
+//        for (int i = 0; i < outsize; i++) {
+//            sb.append(out.pop());
+//        }
+//        System.out.println(sb);
         while (!in.isEmpty()) {
             out.push(in.pop());
         }
@@ -98,6 +107,8 @@ public class _1406 {
         }
         System.out.println(sb);
     }
+
+
 
     public static void main2(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
