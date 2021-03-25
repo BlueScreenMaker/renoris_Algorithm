@@ -12,6 +12,7 @@ public class _1931 {
         int count = 0;
         int endTime = 0;
         int[][] infos = new int[num][2];
+
         for (int i = 0; i < num; i++) {
             String[] info = br.readLine().split(" ");
             infos[i][0] = Integer.parseInt(info[0]);

@@ -5,8 +5,8 @@ import java.util.PriorityQueue;
 public class 조이스틱 {
     public int solution(String name) {
         int answer = 0;
-        char[] naming = name.toCharArray();
         int cursor = 0;
+        char[] naming = name.toCharArray();
         PriorityQueue<Item> pq = new PriorityQueue<>();
 
         for (int i = 0; i < naming.length; i++) {
@@ -74,7 +74,7 @@ public class 조이스틱 {
         @Override
         public int compareTo(Item o) {
 //            return this.cursor-o.cursor; //63.6점 ..
-            return this.getCursorCost()-o.getCursorCost(); //100점....ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ시발 이거 그리디 아니잖아
+            return this.getCursorCost()-o.getCursorCost(); //100점....
 //            return this.getTotalCost() - o.getTotalCost();//이게.. 그리디인데...?
         }
     }
