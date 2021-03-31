@@ -73,9 +73,8 @@ public class 조이스틱 {
         }
         @Override
         public int compareTo(Item o) {
-//            return this.cursor-o.cursor; //63.6점 ..
-            return this.getCursorCost()-o.getCursorCost(); //100점....
-//            return this.getTotalCost() - o.getTotalCost();//이게.. 그리디인데...?
+            return this.getCursorCost()-o.getCursorCost(); //
+//            return this.getTotalCost() - o.getTotalCost();//
         }
     }
 }
