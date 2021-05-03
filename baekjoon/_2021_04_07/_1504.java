@@ -44,21 +44,23 @@ public class _1504 {
         int result1 = 0;
         int result2 = 0;
 
-        result1 += dijkstra(1, middleFirst);
-        result1 += dijkstra(middleFirst, middleSecond);
-        result1 += dijkstra(middleSecond, vertexNum);
-
-        result2 += dijkstra(1, middleSecond);
-        result2 += dijkstra(middleSecond, middleFirst);
-        result2 += dijkstra(middleFirst, vertexNum);
+        dijkstra(1);
+        result1 += weightList[middleFirst];
+        result2 += weightList[middleSecond];
+        dijkstra(middleFirst);
+        result1 += weightList[middleSecond];
+        result2 += weightList[middleSecond];
+        result2 += weightList[vertexNum];
+        dijkstra(middleSecond);
+        result1 += weightList[vertexNum];
         long result = Math.min(result1, result2);
         System.out.println((result >= INF) ? -1 : result);
     }
 
-    public static int dijkstra(int start, int vertexNum) {
+    public static void dijkstra(int start) {
         Arrays.fill(weightList, INF);
         Arrays.fill(find, false);
-        weightList[start]=0;
+        weightList[start] = 0;
         queue.offer(new Node(start, start, 0));
         while (!queue.isEmpty()) {
             Node node = queue.poll();
@@ -74,8 +76,6 @@ public class _1504 {
                 }
             }
         }
-
-        return weightList[vertexNum];
     }
 
 
