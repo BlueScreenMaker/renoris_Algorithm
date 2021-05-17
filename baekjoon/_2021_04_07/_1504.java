@@ -35,6 +35,7 @@ public class _1504 {
             info[start].add(new Node(start, end, weight));
             info[end].add(new Node(end, start, weight));
         }
+
         st = new StringTokenizer(br.readLine());
         int middleFirst = Integer.parseInt(st.nextToken());
         int middleSecond = Integer.parseInt(st.nextToken());
@@ -45,12 +46,15 @@ public class _1504 {
         int result2 = 0;
 
         dijkstra(1);
+
         result1 += weightList[middleFirst];
         result2 += weightList[middleSecond];
+
         dijkstra(middleFirst);
         result1 += weightList[middleSecond];
         result2 += weightList[middleSecond];
         result2 += weightList[vertexNum];
+
         dijkstra(middleSecond);
         result1 += weightList[vertexNum];
         long result = Math.min(result1, result2);
