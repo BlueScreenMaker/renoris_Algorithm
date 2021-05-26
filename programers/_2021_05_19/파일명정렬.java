@@ -39,8 +39,9 @@ public class 파일명정렬 {
         Integer number;
 
         public Item(String s) {
-            this.originalName = s;
+            this.originalName = s; // 2 3 a s d
             head = s.split("[0-9]")[0];
+            
             char[] other = originalName.replace(head, "").toCharArray();
             StringBuilder sb = new StringBuilder();
             for (char in : other) {
