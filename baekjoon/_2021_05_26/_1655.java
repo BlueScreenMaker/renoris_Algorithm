@@ -1,7 +1,6 @@
 package baekjoon._2021_05_26;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -13,6 +12,7 @@ public class _1655 {
         int testcase = Integer.parseInt(br.readLine());
         PriorityQueue<Integer> left = new PriorityQueue<>(Comparator.reverseOrder());
         PriorityQueue<Integer> right = new PriorityQueue<>();
+
         for (int i = 0; i < testcase; i++) {
             int num = Integer.parseInt(br.readLine());
             if (left.size() <= right.size()) { //둘중 값중 작은값을 더 우선시하기때문에 left를 우선으로 해준다
@@ -31,5 +31,4 @@ public class _1655 {
         }
         System.out.println(sb.toString());
     }
-
 }

@@ -121,6 +121,8 @@ public class _7662 {
             minQueue.offer(minout.poll());
         }
     }
+
+
     public static void main(String[] args) throws Exception {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb=new StringBuilder();
