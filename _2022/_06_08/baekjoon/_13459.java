@@ -68,6 +68,14 @@ public class _13459 {
     }
 
     //위로 기울이기 - 가중치 -넓이
+    /*
+    5 5
+    #####
+    #..B#
+    #.#.#
+    #RO.#
+    #####
+     */
     private static String up(String map) {
         char[] line = map.toCharArray();
         for (int i = width; i < line.length-width; i++) {
