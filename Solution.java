@@ -1,17 +1,28 @@
 class Solution {
-    private final long MAX = 1000000000;
-    public int[] solution(long begin, long end) {
-        int[] array = new int[(int) (end-begin) +1];
-        for (long i = end; i >= begin; i--) { //배열에 채우는 과정
-            long index = i-begin;
-            long half = i/2;
-            for (long j = half; j >= 1; j--) {//배열에 들어갈 숫자를 구하는 과정
-                if (i%j == 0) {
-                    array[(int)index] = (int) j;
-                    break;
-                }
-            }
+    private final int DIVIDE = 1000000007;
+    public int solution(int n) {
+        if (n % 2 != 0) {
+            return 0;
         }
-        return array;
+
+        long[] dp = new long[n+1];
+        dp[0] = 1;
+        dp[2] = 3;
+
+        if (n < 4) {
+            return (int) dp[n];
+        }
+
+        for (int i = 4; i <= n; i = i +2) {
+            dp[i] = (dp[i-2] * 3) % DIVIDE;
+
+            for (int j = i - 4; j >= 0; j = j-2) {
+                dp[i] += dp[j] * 2 ;
+            }
+
+            dp[i] %= DIVIDE;
+        }
+
+        return (int) dp[n];
     }
 }
