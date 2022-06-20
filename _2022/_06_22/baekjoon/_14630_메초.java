@@ -1,25 +1,27 @@
+package _2022._06_22.baekjoon;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-public class Main {
+public class _14630_메초 {
     private static int goalNum;
     private static int nowNum;
-    private static int totalTransFormNum;
-    private static char[][] transFormShapes;
+    private static int[][] transFormNodes;
 
     public static void main (String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         read(br);
         dijkstra();
+
     }
 
     private static void dijkstra() {
         PriorityQueue<Node> pq = new PriorityQueue<Node>();
-        boolean[] visit = new boolean[totalTransFormNum];
-        int[] record = new int[totalTransFormNum];
+        boolean[] visit = new boolean[transFormNodes.length];
+        int[] record = new int[transFormNodes.length];
         Arrays.fill(record, Integer.MAX_VALUE);
 
         pq.add(new Node(nowNum, 0));
@@ -36,11 +38,11 @@ public class Main {
 
             visit[nodeNum] = true;
 
-            for (int i = 0; i < totalTransFormNum; i++) {
+            for (int i = 0; i < transFormNodes.length; i++) {
                 if (i == nodeNum) {
                     continue;
                 }
-                int nowWeight = weight + calTransForm(nodeNum, i);
+                int nowWeight = weight + transFormNodes[nodeNum][i];
                 if (nowWeight < record[i]) {
                     pq.add(new Node(i, nowWeight));
                     record[i] = nowWeight;
@@ -52,9 +54,9 @@ public class Main {
 
     }
 
-    public static int calTransForm(int nowNum, int goalNum) {
-        char[] now = transFormShapes[nowNum];
-        char[] goal = transFormShapes[goalNum];
+    public static int calTransForm(int nowNum, int goalNum, String[] transForms) {
+        char[] now = transForms[nowNum].toCharArray();
+        char[] goal = transForms[goalNum].toCharArray();
 
         int weight = 0;
 
@@ -68,14 +70,21 @@ public class Main {
     }
 
     public static void read(BufferedReader br) throws IOException {
-        totalTransFormNum = Integer.parseInt(br.readLine());
-        char[] first = br.readLine().toCharArray();
+        int totalTransFormNum = Integer.parseInt(br.readLine());
+        String[] transFormShapes = new String[totalTransFormNum];
+        transFormNodes = new int[totalTransFormNum][totalTransFormNum];
 
-        transFormShapes = new char[totalTransFormNum][first.length];
-        transFormShapes[0] = first;
 
-        for (int i = 1; i < totalTransFormNum; i++) {
-            transFormShapes[i] = br.readLine().toCharArray();
+        for (int i = 0; i < totalTransFormNum; i++) {
+            transFormShapes[i] = br.readLine();
+        }
+
+        for (int i = 0; i < totalTransFormNum; i++) {
+            for (int j = 0; j < totalTransFormNum; j++) {
+                int weight = calTransForm(i, j, transFormShapes);
+                transFormNodes[j][i] = weight;
+                transFormNodes[i][j] = weight;
+            }
         }
 
         String[] line = br.readLine().split(" ");

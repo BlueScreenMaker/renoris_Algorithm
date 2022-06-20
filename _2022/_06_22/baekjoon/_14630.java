@@ -1,10 +1,12 @@
+package _2022._06_22.baekjoon;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-public class Main {
+public class _14630 {
     private static int goalNum;
     private static int nowNum;
     private static int totalTransFormNum;

@@ -40,7 +40,6 @@ public class _13424 {
                 }
             }
             sb.append(minRoom).append("\n");
-            int qwe = dp.length;
         }
         System.out.println(sb.toString());
     }

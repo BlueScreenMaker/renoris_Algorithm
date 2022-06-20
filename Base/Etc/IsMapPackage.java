@@ -1,4 +1,4 @@
-package Base.etc;
+package Base.Etc;
 
 public class IsMapPackage {
     public static boolean isMap (int x, int y, int maxLength) {
