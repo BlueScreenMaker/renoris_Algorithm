@@ -1,4 +1,6 @@
-class Solution {
+package _2022._07_06.programmers;
+
+class 파괴되지않는건물 {
 
     //참고 https://jangcenter.tistory.com/121
     public int solution(int[][] board, int[][] skill) {

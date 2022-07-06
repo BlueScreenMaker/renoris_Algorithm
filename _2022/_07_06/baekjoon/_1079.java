@@ -1,8 +1,10 @@
+package _2022._07_06.baekjoon;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class _1079 {
 
     private static int[] scores;
     private static int[][] relation;
