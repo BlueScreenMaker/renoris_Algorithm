@@ -52,94 +52,62 @@ class Solution {
     
     private boolean canOneDraft (int[] indexs, char[][] board) {;
         //상하 먼저
-        boolean verticalFirst = true;
-        for (int i = indexs[1]+1; i <= indexs[3] ; i++) {
-            if (board[i][indexs[0]] != '.') {
-                verticalFirst = false;
+        boolean verticalFirst =
+                searchVertical(indexs[1], indexs[3], indexs[0], board) &&
+                board[indexs[3]][indexs[0]] == '.' &&
+                searchHorizontal(indexs[0], indexs[2], indexs[3], board);
+
+        //좌우먼저
+        boolean horizontalFirst = searchHorizontal(indexs[0], indexs[2], indexs[1], board) && board[indexs[1]][indexs[2]] == '.' && searchVertical(indexs[1], indexs[3], indexs[2], board);
+
+        return horizontalFirst || verticalFirst;
+    }
+
+    private boolean searchHorizontal(int targetX, int goalX, int y, char[][] board) {
+        if (targetX > goalX) {
+            int temp = targetX;
+            targetX = goalX;
+            goalX = temp;
+        }
+
+        boolean result = true;
+        for (int i = targetX+1; i < goalX; i++) {
+            if (board[y][i] != '.') {
+                result = false;
                 break;
             }
         }
-
-        if (verticalFirst) {
-            if (indexs[0] < indexs[2]) {
-                for (int i = indexs[0]; i < indexs[2]; i++) {
-                    if (board[indexs[3]][i] != '.') {
-                        verticalFirst = false;
-                        break;
-                    }
-                }
-            }
-            else {
-                for (int i = indexs[2]+1; i <= indexs[0]; i++) {
-                    if (board[indexs[3]][i] != '.') {
-                        verticalFirst = false;
-                        break;
-                    }
-                }
-            }
-        }
-
-        //좌우먼저
-        boolean horizontalFirst = true;
-        if (indexs[0] < indexs[2]) {
-            for (int i = indexs[0] + 1; i <= indexs[2]; i++) {
-                if (board[indexs[1]][i] != '.') {
-                    horizontalFirst = false;
-                    break;
-                }
-            }
-        }
-        else {
-            for (int i = indexs[2]; i < indexs[0]; i++) {
-                if (board[indexs[1]][i] != '.') {
-                    horizontalFirst = false;
-                    break;
-                }
-            }
-        }
-
-        if (horizontalFirst) {
-            if (indexs[0] < indexs[2]) {
-                for (int i = indexs[1]; i < indexs[3]; i++) {
-                    if (board[i][indexs[2]] != '.') {
-                        horizontalFirst = false;
-                        break;
-                    }
-                }
-            }else {
-                for (int i = indexs[1]; i < indexs[3]; i++) {
-                    if (board[i][indexs[2]] != '.') {
-                        horizontalFirst = false;
-                        break;
-                    }
-                }
-            }
-        }
-
-        return horizontalFirst || verticalFirst;
-
+        return result;
     }
-    
-    
+
+    private boolean searchVertical(int targetY, int goalY, int x, char[][] board) {
+        if (targetY > goalY) {
+            int temp = targetY;
+            targetY = goalY;
+            goalY = temp;
+        }
+
+        boolean result = true;
+        for (int i = targetY+1; i < goalY; i++) {
+            if (board[i][x] != '.') {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+
+
     private boolean canNoDraft(int[] indexs, char[][] board) {
         //상하 직선 -x축이 서로같다
         boolean result = true;
         if (indexs[0] == indexs[2]) {
-            for (int i = indexs[1] + 1; i < indexs[3] ; i++) {
-                if (board[i][indexs[0]] != '.') {
-                    result = false;
-                    break;
-                }
-            }
+            result = searchVertical(indexs[1], indexs[3], indexs[0], board);
         }
         //좌우 직선
         else {
-            for (int i = indexs[0] + 1; i < indexs[2] ; i++) {
-                if (board[indexs[1]][i] != '.') {
-                    result = false;
-                    break;
-                }
-            }
+            result = searchHorizontal(indexs[0], indexs[2], indexs[1], board);
         }
 
         return result;
