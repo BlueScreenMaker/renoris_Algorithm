@@ -53,8 +53,6 @@ public class _1079 {
             //끝나고 dieList 롤백
             dieList[diePeople] = false;
         }
-
-
     }
 
     private static int findMaxGuiltyIndex(int[] score, boolean[] dieList) {

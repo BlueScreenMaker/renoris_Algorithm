@@ -42,5 +42,6 @@ class 파괴되지않는건물 {
             }
         }
         return count;
+
     }
 }
