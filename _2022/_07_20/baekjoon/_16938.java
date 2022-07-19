@@ -1,9 +1,11 @@
+package _2022._07_20.baekjoon;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class _16938 {
     //백준 - 캠프준비 - 16938
     //https://www.acmicpc.net/problem/16938
 

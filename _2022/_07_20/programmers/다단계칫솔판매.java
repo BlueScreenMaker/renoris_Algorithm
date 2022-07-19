@@ -1,6 +1,8 @@
+package _2022._07_20.programmers;
+
 import java.util.HashMap;
 
-class Solution {
+class 다단계칫솔판매 {
     private HashMap<String, Member> memberHashMap = new HashMap<>();
     public int[] solution(String[] enroll, String[] referral, String[] seller, int[] amount) {
         //다단계 멤버 리스트 저장
