@@ -6,7 +6,6 @@ public class programmersMain {
         String[] reff = {"-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"};
         String[] seller = {"young", "john", "tod", "emily", "mary"};
         int[] amount = {12, 4, 2, 5, 10};
-        System.out.println(solution.solution(enroll, reff, seller, amount));
 
     }
 }

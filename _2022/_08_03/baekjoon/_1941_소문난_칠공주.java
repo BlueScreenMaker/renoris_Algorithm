@@ -1,9 +1,11 @@
+package _2022._08_03.baekjoon;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 
-public class Main {
+public class _1941_소문난_칠공주 {
 
     private static boolean[][] map = new boolean[5][5];
     private static HashSet<Integer> hashSet = new HashSet<>();
