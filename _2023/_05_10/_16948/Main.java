@@ -1,3 +1,4 @@
+package _2023._05_10._16948;
 
 import java.io.BufferedReader;
 import java.io.IOException;
