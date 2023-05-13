@@ -1,82 +1,114 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
-    private static int mapSize;
-    private static int[][] check;
-    /**
-     *
-     (y-2, x-1), (y-2, x+1), (y, x-2), (y, x+2), (y+2, x-1), (y+2, x+1)
-     */
-    private static final int[] directionX = {-1, 1, -2, 2, -1, +1};
-    private static final int[] directionY = {-2, -2, 0, 0, 2, 2};
+    private static boolean[][] map;
+    private static boolean[][] visit;
+    private static int[][] pieceNums;
+    private static int column;
+    private static int row;
+
     public static void main(String[] args) throws IOException {
+        read();
+
+        int pieceNum = 1;
+
+        ArrayList<Piece> pieces = new ArrayList<>();
+
+        for (int i = 0; i < row; i++) {
+            Mapper mapper = new Mapper(0);
+            for (int j = 0; j < column; j++) {
+                if (!map[i][j] || visit[i][j]) continue;
+                dfs(j, i, pieceNum, mapper);
+                pieces.add(new Piece(pieceNum, mapper.value));
+                pieceNum++;
+            }
+        }
+
+        int max = 0;
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                if (map[i][j]) continue;
+                int value = getMaxValue(j, i, pieces);
+                max = Math.max(value, max);
+            }
+        }
+
+        System.out.println(max);
+    }
+
+    private static int getMaxValue(int x, int y, ArrayList<Piece> arrayList) {
+        int result = 1;
+        Set<Integer> set = new HashSet<>();
+        set.add(isMap(x, y + 1) ? pieceNums[y + 1][x] : -1);
+        set.add(isMap(x, y - 1) ? pieceNums[y - 1][x] : -1);
+        set.add(isMap(x - 1, y) ? pieceNums[y][x - 1] : -1);
+        set.add(isMap(x + 1, y) ? pieceNums[y][x + 1] : -1);
+
+        for (Piece piece : arrayList) {
+            for (int item : set) {
+                if (item == piece.pieceNum) result += piece.size;
+            }
+        }
+
+        return result;
+    }
+
+    private static void dfs(int x, int y, int pieceNum, Mapper size) {
+        if (visit[y][x]) return;
+        visit[y][x] = true;
+        pieceNums[y][x] = pieceNum;
+        size.value = size.value + 1;
+        if (isMap(x, y + 1) && map[y + 1][x]) dfs(x, y + 1, pieceNum, size);
+        if (isMap(x, y - 1) && map[y - 1][x]) dfs(x, y - 1, pieceNum, size);
+        if (isMap(x + 1, y) && map[y][x + 1]) dfs(x + 1, y, pieceNum, size);
+        if (isMap(x - 1, y) && map[y][x - 1]) dfs(x - 1, y, pieceNum, size);
+    }
+
+    private static void read() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        mapSize = Integer.parseInt(br.readLine());
-        check = new int[mapSize][mapSize];
-        Integer[] secondLine = Arrays.stream(br.readLine().split(" ")).map(Integer::parseInt).toArray(Integer[]::new);
-        Node firstNode = new Node(secondLine[1], secondLine[0]);
+        String[] firstLine = br.readLine().split(" ");
 
-        for (int i = 0; i < check.length; i++) {
-            Arrays.fill(check[i], Integer.MAX_VALUE);
-        }
+        row = Integer.parseInt(firstLine[0]);
+        column = Integer.parseInt(firstLine[1]);
 
-        check[secondLine[0]][secondLine[1]] = 0;
+        map = new boolean[row][column];
+        pieceNums = new int[row][column];
+        visit = new boolean[row][column];
 
-        Node resultNode = new Node(secondLine[3], secondLine[2]);
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(firstNode);
-
-        int result = -1;
-
-        while (queue.size() > 0) {
-            Node node = queue.poll();
-            int moveCount = check[node.y][node.x];
-
-            if (node.equals(resultNode)) {
-                result = moveCount;
-                break;
-            }
-
-            for (int i = 0; i < directionX.length; i++) {
-                int x = node.x + directionX[i];
-                int y = node.y + directionY[i];
-                int movedCount = check[node.y][node.x] + 1;
-                if (isMap(x, y) && check[y][x] > movedCount) {
-                    queue.add(new Node(x, y));
-                    check[y][x] = movedCount;
-                }
+        for (int i = 0; i < row; i++) {
+            String[] line = br.readLine().split(" ");
+            for (int j = 0; j < column; j++) {
+                map[i][j] = line[j].equals("1");
             }
         }
-
-        System.out.println(result);
     }
 
-    public static boolean isMap(int x, int y) {
-        return x >= 0 && y >= 0 && x < mapSize && y < mapSize;
+    private static boolean isMap(int x, int y) {
+        return x >= 0 && x < column && y >= 0 && y < row;
     }
 
-    static class Node {
-        int x;
-        int y;
+    static class Piece {
+        int pieceNum;
+        int size;
 
-        public Node (int x, int y) {
-            this.x = x;
-            this.y = y;
+        public Piece(int pieceNum, int size) {
+            this.pieceNum = pieceNum;
+            this.size = size;
         }
+    }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Node node = (Node) o;
-            return x == node.x && y == node.y;
+    static class Mapper {
+        int value;
+
+        public Mapper(int value) {
+            this.value = value;
         }
     }
 }
