@@ -1,4 +1,4 @@
-package Base;
+package _2024._06_20;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,10 +6,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class Main {
+public class _17143 {
     private static int[] directionX = {0, 0, 1, -1};
     private static int[] directionY = {-1, 1, 0, 0};
 
@@ -143,4 +145,5 @@ public class Main {
             this.direction += direction % 2 == 0 ? 1 : -1;
         }
     }
+
 }
